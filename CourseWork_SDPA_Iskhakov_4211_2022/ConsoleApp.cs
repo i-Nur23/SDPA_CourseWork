@@ -139,6 +139,7 @@ namespace CourseWork
                         {
                             Console.WriteLine("Такой отдел существует.");
                         }
+                        else
                         {
                             Console.WriteLine("Такого отдела не существует.");
                         }
@@ -224,7 +225,7 @@ namespace CourseWork
                         {
                             if (Dprt.isEmpty())
                             {
-                                Console.WriteLine("Организация пустая.");
+                                Console.WriteLine("Отдел пустой.");
                                 Console.WriteLine();
                                 break;
                             }

@@ -83,7 +83,7 @@ namespace CourseWork
             {
                 Employee prev = Head;
                 Employee curr = Head.Next;
-                while (curr != null || String.Compare(curr.SurName,SurName) < 0 || (String.Compare(curr.SurName, SurName) == 0 && String.Compare(curr.Name, Name) < 0))
+                while (curr != null && (String.Compare(curr.SurName,SurName) < 0 || (String.Compare(curr.SurName, SurName) == 0 && String.Compare(curr.Name, Name) < 0)))
                 {
                     prev = curr;
                     curr = curr.Next;
@@ -92,6 +92,7 @@ namespace CourseWork
                 temp.Next = curr != null ? curr : null;
 
                 prev.Next = temp;
+                Count++;
             }
         }
         public void Delete(string Name, string SurName, int Age, string Post)
