@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CourseWork
 {
-    internal class DepartmentsQueue
+    public class DepartmentsQueue
     {
-        public int Count { get; private set; } = 0;
-        public Department Head { get; private set; }
-        public Department Last { get; private set; }
+        public int Count { get; set; } = 0;
+        public Department Head { get; set; }
+        public Department Last { get; set; }
         public DepartmentsQueue()
         {
             Head = new Department();

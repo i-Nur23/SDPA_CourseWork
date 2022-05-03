@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace CourseWork
 {
-    internal class Organization
+    public class Organization
     {
         public string Name { get; set; }
         public DepartmentsQueue departmentQueue { get; set; }
+        public Organization()
+        {
+
+        }
         public Organization(string Name)
         {
             this.Name = Name;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseWork
 {
-    internal class Employee
+    public class Employee
     {
         public string? Name { get; set; }
         public string? SurName { get; set; }

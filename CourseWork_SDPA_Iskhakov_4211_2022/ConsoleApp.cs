@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CourseWork_SDPA_Iskhakov_4211_2022.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace CourseWork
 {
-    internal class ConsoleApp
+    public class ConsoleApp
     {
-        public ConsoleApp()
+        private IStorage store;
+        public ConsoleApp(IStorage store)
         {
-
+            this.store = store;
         }
 
         private string CheckedString()
@@ -76,9 +78,9 @@ namespace CourseWork
             {
                 Console.WriteLine("Выберите действие ");
                 Console.WriteLine("1 - Поменять название фирмы.\n2 - Вывести список названий отделов\n3 - Вывести список всех отделов с сотрудниками\n4 - Вывести список сотрудников заданного отдела\n" +
-                    "5 - Найти отдел\n6 - Найти сотрудника заданного отдела\n7 - Добавить отдел\n8 - Добавить сотрудника\n9 - Удалить отдел\n10 - Удалить сотрудника\n11 - Завершение работы");
+                    "5 - Найти отдел\n6 - Найти сотрудника заданного отдела\n7 - Добавить отдел\n8 - Добавить сотрудника\n9 - Удалить отдел\n10 - Удалить сотрудника\n11 - Сохранить в файл XML\n12 - загрузить из XML файла\n13 - Завершение работы");
                 Console.Write("Действие: ");
-                choice = CheckedInteger(1,11);
+                choice = CheckedInteger(1,13);
                 switch (choice)
                 {
                     case 1:
@@ -242,6 +244,14 @@ namespace CourseWork
                         Console.WriteLine();
                         break;
                     case 11:
+                        store.Save(Organization);
+                        Console.WriteLine();
+                        break;
+                    case 12:
+                        Organization = store.Download();
+                        Console.WriteLine();
+                        break;
+                    case 13:
                         Organization.DeleteAll();
                         work = false;
                         break;

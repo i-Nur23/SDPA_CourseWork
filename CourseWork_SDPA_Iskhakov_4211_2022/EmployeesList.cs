@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CourseWork
 {
-    internal class EmployeesList
+    public class EmployeesList
     {
-        public int Count { get; private set; } = 0;
-        public Employee Head { get; private set; }
+        public int Count { get; set; } = 0;
+        public Employee Head { get; set; }
         public EmployeesList()
         {
             Head = new Employee();
@@ -28,14 +28,14 @@ namespace CourseWork
             Employee current;
             if (Head != null && Head.Next != null)
             {
-                Console.WriteLine("========================================================");
-                Console.WriteLine("|\tИмя\t|\tФамилия\t|\tВозраст\t|\tДолжность\t|");
-                Console.WriteLine("========================================================");
+                Console.WriteLine("==================================================================");
+                Console.WriteLine("|\t\tИмя\t\t|\t\tФамилия\t\t|\t\tВозраст\t\t|\\ttДолжность\t\t|");
+                Console.WriteLine("==================================================================");
                 current = Head.Next;
                 while (current != null)
                 {
-                    Console.WriteLine($"\t{current.Name}\t|\t{current.SurName}\t|\t{current.Age}\t|\t{current.Post}\t|");
-                    Console.WriteLine("========================================================");
+                    Console.WriteLine($"|\t\t{current.Name}\t\t|\t\t{current.SurName}\t\t|\t\t{current.Age}\t\t|\t\t{current.Post}\t\t|");
+                    Console.WriteLine("==================================================================");
                     current = current.Next;
                 }
             }
