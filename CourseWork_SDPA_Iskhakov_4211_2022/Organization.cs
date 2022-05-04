@@ -49,6 +49,7 @@ namespace CourseWork
         }
         public void Push(string name)
         {
+            if (Search(name) != null) { Console.WriteLine("Такой отдел уже существует."); return; }
             departmentQueue.Add(name);
         }
         public void Delete()

@@ -28,14 +28,14 @@ namespace CourseWork
             Employee current;
             if (Head != null && Head.Next != null)
             {
-                Console.WriteLine("==================================================================");
-                Console.WriteLine("|\t\tИмя\t\t|\t\tФамилия\t\t|\t\tВозраст\t\t|\\ttДолжность\t\t|");
-                Console.WriteLine("==================================================================");
+                Console.WriteLine("====================================================================================================");
+                Console.WriteLine("|\t{0,-20}|\t{1,-20}|\t{2,-20}|\t{3,-20}|", "Имя","Фамилия","Возраст","Должность");
+                Console.WriteLine("====================================================================================================");
                 current = Head.Next;
                 while (current != null)
                 {
-                    Console.WriteLine($"|\t\t{current.Name}\t\t|\t\t{current.SurName}\t\t|\t\t{current.Age}\t\t|\t\t{current.Post}\t\t|");
-                    Console.WriteLine("==================================================================");
+                    Console.WriteLine("|\t{0,-20}|\t{1,-20}|\t{2,-20}|\t{3,-20}|",current.Name, current.SurName, current.Age, current.Post);
+                    Console.WriteLine("====================================================================================================");
                     current = current.Next;
                 }
             }

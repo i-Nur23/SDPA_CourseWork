@@ -30,6 +30,7 @@ namespace CourseWork
             FileStream fr = new FileStream(FilePath, FileMode.Open);
             var organization =  (Organization)serializer.Deserialize(fr);
             fr.Close();
+            
             return organization;
         }
     }

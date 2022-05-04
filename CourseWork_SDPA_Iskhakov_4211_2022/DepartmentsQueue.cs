@@ -32,13 +32,15 @@ namespace CourseWork
             }
 
             Department curr = Head.Next;
-            Console.WriteLine("======================================================================");
-            Console.WriteLine("|\t\tИмя отдела\t\t|\t\tЧисленность\t\t|");
-            Console.WriteLine("======================================================================");
+            Console.WriteLine("====================================================");
+            //Console.WriteLine("|\t\tИмя отдела\t\t|\t\tЧисленность\t\t|");
+            Console.WriteLine("|\t{0, -20}|\t{1, -20}|", "Имя отдела","Численность");
+            Console.WriteLine("====================================================");
             while (curr != null)
             {
-                Console.WriteLine($"|\t\t{curr.Name}\t\t|\t\t{curr.EmployeesList.Count}\t\t|");
-                Console.WriteLine("======================================================================");
+                //Console.WriteLine($"|\t\t{curr.Name}\t\t|\t\t{curr.EmployeesList.Count}\t\t|");
+                Console.WriteLine("|\t{0, -20}|\t{1, -20}|", curr.Name, curr.EmployeesList.Count);
+                Console.WriteLine("====================================================");
                 curr = curr.Next; 
             }
             
@@ -54,6 +56,7 @@ namespace CourseWork
             Department curr = Head.Next;
             while (curr != null)
             {
+                Console.WriteLine();
                 Console.WriteLine($"Отдел: {curr.Name}");
                 curr.EmployeesList.ShowAll();
                 Console.WriteLine();

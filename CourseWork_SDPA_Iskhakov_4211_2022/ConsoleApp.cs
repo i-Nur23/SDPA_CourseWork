@@ -69,9 +69,29 @@ namespace CourseWork
 
         public void Start()
         {
-            Console.WriteLine("Введите название вашей компании: ");
-            string OrgName = CheckedString();
-            var Organization = new Organization(OrgName);
+            Organization Organization;
+
+            while (true)
+            {
+                Console.Write("Введите название вашей компании или '0', если хотите загрузить из XML файла: ");
+                string OrgName = CheckedString();
+                if (OrgName == "0") 
+                {
+                    try
+                    {
+                        Organization = store.Download();
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Файл пуст.");
+                        continue;
+                    }
+                    Organization = store.Download(); 
+                }
+                else { Organization = new Organization(OrgName); }
+                break;
+            }
+
             int choice;
             bool work = true;
             while (work)
@@ -83,6 +103,7 @@ namespace CourseWork
                 choice = CheckedInteger(1,13);
                 switch (choice)
                 {
+                    // Changing org. name
                     case 1:
                         Console.Write("Введите новое название: ");
                         string NewName = Console.ReadLine();
@@ -96,6 +117,8 @@ namespace CourseWork
                         }
                         Console.WriteLine();
                         break;
+
+                    // Showing only departments
                     case 2:
                         if (Organization.isEmpty())
                         {
@@ -107,6 +130,8 @@ namespace CourseWork
                         Organization.ShowOnlyDeps();
                         Console.WriteLine();
                         break;
+
+                    // Showing departments with employees
                     case 3:
                         if (Organization.isEmpty())
                         {
@@ -118,6 +143,8 @@ namespace CourseWork
                         Organization.ShowAll();
                         Console.WriteLine();
                         break;
+
+                    // Showing employees of defined department
                     case 4:
                         if (Organization.isEmpty())
                         {
@@ -129,6 +156,8 @@ namespace CourseWork
                         Organization.ShowDepsEmployees(CheckedString());
                         Console.WriteLine();
                         break;
+
+                    // Seraching department
                     case 5:
                         if (Organization.isEmpty())
                         {
@@ -147,6 +176,8 @@ namespace CourseWork
                         }
                         Console.WriteLine();
                         break;
+                    
+                    // Searching employee
                     case 6:
                         if (Organization.isEmpty())
                         {
@@ -181,11 +212,15 @@ namespace CourseWork
                         }
                         Console.WriteLine();
                         break;
+
+                    // Pushing new department
                     case 7:
                         Console.Write("Введите название нового отдела: "); 
                         Organization.Push(CheckedString());
                         Console.WriteLine();
                         break;
+                    
+                    // Adding new employee
                     case 8:
                         Console.Write("Введите название отдела в который требуется добавить нового сотрудника: ");
                         Dprt = Organization.Search(CheckedString());
@@ -203,6 +238,8 @@ namespace CourseWork
                         }
                         Console.WriteLine();
                         break;
+
+                    // Deleting department
                     case 9:
                         if (Organization.isEmpty())
                         {
@@ -214,6 +251,8 @@ namespace CourseWork
                         }
                         Console.WriteLine();
                         break;
+
+                    // Deleting employee
                     case 10:
                         if (Organization.isEmpty())
                         {
@@ -243,14 +282,28 @@ namespace CourseWork
                         }
                         Console.WriteLine();
                         break;
+
+                    // Saving structure
                     case 11:
                         store.Save(Organization);
                         Console.WriteLine();
                         break;
+
+                    // Downloading structure
                     case 12:
-                        Organization = store.Download();
+                        try
+                        {
+                            Organization = store.Download();
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Файл пустой");
+                            throw;
+                        }
                         Console.WriteLine();
                         break;
+
+                    // Circle exit
                     case 13:
                         Organization.DeleteAll();
                         work = false;
