@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace CourseWork
 {
+    [DataContract()]
     public class EmployeesList
     {
-        public int Count { get; set; } = 0;
-        public Employee Head { get; set; }
+        [DataMember]
+        public int Count { get; private set; } = 0;
+        [DataMember]
+        private Employee Head { get;  set; }
         public EmployeesList()
         {
             Head = new Employee();

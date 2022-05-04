@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CourseWork
 {
+    [DataContract()]
     public class Organization
     {
+        [DataMember]
         public string Name { get; set; }
-        public DepartmentsQueue departmentQueue { get; set; }
+        [DataMember]
+        private DepartmentsQueue departmentQueue { get; set; }
         public Organization()
         {
 
@@ -36,7 +40,7 @@ namespace CourseWork
             var requiredDep = departmentQueue.Search(DepName);
             if (requiredDep != null)
             {
-                requiredDep.EmployeesList.ShowAll();
+                requiredDep.ShowAll();
             }
             else
             {

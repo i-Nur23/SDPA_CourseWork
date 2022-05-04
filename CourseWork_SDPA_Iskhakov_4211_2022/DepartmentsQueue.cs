@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace CourseWork
 {
+    [DataContract()]
     public class DepartmentsQueue
     {
-        public int Count { get; set; } = 0;
-        public Department Head { get; set; }
-        public Department Last { get; set; }
+        [DataMember]
+        public int Count { get; private set; } = 0;
+        [DataMember]
+        private Department Head { get; set; }
+        [DataMember]
+        private Department Last { get; set; }
         public DepartmentsQueue()
         {
             Head = new Department();
@@ -39,7 +44,7 @@ namespace CourseWork
             while (curr != null)
             {
                 //Console.WriteLine($"|\t\t{curr.Name}\t\t|\t\t{curr.EmployeesList.Count}\t\t|");
-                Console.WriteLine("|\t{0, -20}|\t{1, -20}|", curr.Name, curr.EmployeesList.Count);
+                Console.WriteLine("|\t{0, -20}|\t{1, -20}|", curr.Name, curr.Count());
                 Console.WriteLine("====================================================");
                 curr = curr.Next; 
             }
@@ -58,7 +63,7 @@ namespace CourseWork
             {
                 Console.WriteLine();
                 Console.WriteLine($"Отдел: {curr.Name}");
-                curr.EmployeesList.ShowAll();
+                curr.ShowAll();
                 Console.WriteLine();
                 curr =  curr.Next;
             }

@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace CourseWork
 {
+    [DataContract()]
     public class Employee
     {
-        public string? Name { get; set; }
-        public string? SurName { get; set; }
-        public int Age { get; set; }
-        public string? Post { get; set; }
-
-        public Employee? Next;
+        [DataMember]
+        public string? Name { get; private set; }
+        [DataMember]
+        public string? SurName { get; private set; }
+        [DataMember]
+        public int Age { get; private set; }
+        [DataMember]
+        public string? Post { get; private set; }
+        [DataMember]
+        public Employee Next { get; set; }
         public Employee()
         {
             this.Next = null;

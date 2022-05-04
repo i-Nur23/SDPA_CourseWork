@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CourseWork
 {
+    [DataContract()]
     public class Department
     {
+        [DataMember]
         public string Name { get; set; }
+        [DataMember]
         public Department Next { get; set; }
-        public EmployeesList EmployeesList { get; set; }
+        [DataMember]
+        private EmployeesList EmployeesList { get; set; }
         public Department()
         {
             EmployeesList = new EmployeesList();
@@ -19,6 +24,14 @@ namespace CourseWork
         {
             this.Name = Name;
             EmployeesList = new EmployeesList();
+        }
+        public int Count ()
+        {
+            return EmployeesList.Count;
+        }
+        public void ShowAll()
+        {
+            EmployeesList.ShowAll();
         }
         public bool isEmpty()
         {
