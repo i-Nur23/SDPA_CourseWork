@@ -7,18 +7,12 @@ using System.Runtime.Serialization;
 
 namespace CourseWork
 {
-    [DataContract()]
     public class Employee
     {
-        [DataMember]
         public string? Name { get; private set; }
-        [DataMember]
         public string? SurName { get; private set; }
-        [DataMember]
         public int Age { get; private set; }
-        [DataMember]
         public string? Post { get; private set; }
-        [DataMember]
         public Employee Next { get; set; }
         public Employee()
         {

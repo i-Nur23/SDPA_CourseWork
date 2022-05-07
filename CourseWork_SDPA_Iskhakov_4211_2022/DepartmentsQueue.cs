@@ -7,14 +7,10 @@ using System.Runtime.Serialization;
 
 namespace CourseWork
 {
-    [DataContract()]
     public class DepartmentsQueue
     {
-        [DataMember]
         public int Count { get; private set; } = 0;
-        [DataMember]
-        private Department Head { get; set; }
-        [DataMember]
+        public Department Head { get; private set; }
         private Department Last { get; set; }
         public DepartmentsQueue()
         {
@@ -38,12 +34,10 @@ namespace CourseWork
 
             Department curr = Head.Next;
             Console.WriteLine("====================================================");
-            //Console.WriteLine("|\t\tИмя отдела\t\t|\t\tЧисленность\t\t|");
             Console.WriteLine("|\t{0, -20}|\t{1, -20}|", "Имя отдела","Численность");
             Console.WriteLine("====================================================");
             while (curr != null)
             {
-                //Console.WriteLine($"|\t\t{curr.Name}\t\t|\t\t{curr.EmployeesList.Count}\t\t|");
                 Console.WriteLine("|\t{0, -20}|\t{1, -20}|", curr.Name, curr.Count());
                 Console.WriteLine("====================================================");
                 curr = curr.Next; 
@@ -97,6 +91,20 @@ namespace CourseWork
             }
             Count++;
         }
+        public void Add(Department department)
+        {
+            if (isEmpty())
+            {
+                Last = department;
+                Head.Next = Last;
+            }
+            else
+            {
+                Last.Next = department;
+                Last = department;
+            }
+            Count++;
+        }
         public void Delete()
         {
             if(isEmpty())
@@ -116,8 +124,8 @@ namespace CourseWork
         {
             if(!isEmpty())
             {
-                var temp = Head;
-                var curr = Head;
+                var temp = Head.Next;
+                var curr = Head.Next;
                 while (curr != null)
                 {
                     temp = curr;

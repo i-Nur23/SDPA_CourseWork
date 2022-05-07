@@ -4,20 +4,15 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CourseWork
 {
     [DataContract()]
     public class Organization
     {
-        [DataMember]
         public string Name { get; set; }
-        [DataMember]
         private DepartmentsQueue departmentQueue { get; set; }
-        public Organization()
-        {
-
-        }
         public Organization(string Name)
         {
             this.Name = Name;
@@ -56,6 +51,12 @@ namespace CourseWork
             if (Search(name) != null) { Console.WriteLine("Такой отдел уже существует."); return; }
             departmentQueue.Add(name);
         }
+
+        public void Push(Department department)
+        {
+            if (Search(department.Name) != null) { Console.WriteLine("Такой отдел уже существует."); return; }
+            departmentQueue.Add(department);
+        }
         public void Delete()
         {
             departmentQueue.Delete();
@@ -63,6 +64,26 @@ namespace CourseWork
         public void DeleteAll()
         {
             departmentQueue.DeleteAll();
+            departmentQueue = null;
+        }
+
+        public void ReadOrgProps(XElement org_)
+        {
+            var dprt_curr = departmentQueue.Head.Next;
+            while (dprt_curr != null)
+            {
+                XElement dprt_ = new XElement("department");
+
+                XAttribute dprtNameAttr = new XAttribute("name", dprt_curr.Name);
+
+                dprt_.Add(dprtNameAttr);
+
+                dprt_curr.ReadDprtProps(dprt_);
+
+                org_.Add(dprt_);
+
+                dprt_curr = dprt_curr.Next;
+            }
         }
     }
 }

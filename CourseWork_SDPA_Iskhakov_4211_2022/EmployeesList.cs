@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace CourseWork
 {
-    [DataContract()]
     public class EmployeesList
     {
-        [DataMember]
         public int Count { get; private set; } = 0;
-        [DataMember]
-        private Employee Head { get;  set; }
+        public Employee Head { get;  private set; }
         public EmployeesList()
         {
             Head = new Employee();

@@ -7,7 +7,7 @@ namespace CourseWork
         private const string XMLFilePath = @"C:\Users\User\ProjectsFolder\Storage.xml";
         private static void Main()
         {
-            var app = new ConsoleApp(new XMLStorage(XMLFilePath));
+            var app = new ConsoleApp(new XMLReadWrite(XMLFilePath));
             app.Start();
         }
     }
