@@ -8,7 +8,6 @@ using System.Xml.Linq;
 
 namespace CourseWork
 {
-    [DataContract()]
     public class Organization
     {
         public string Name { get; set; }
@@ -65,6 +64,13 @@ namespace CourseWork
         {
             departmentQueue.DeleteAll();
             departmentQueue = null;
+        }
+        public void Clear()
+        {
+            if (isEmpty()) { Console.WriteLine("Организация пустая"); ; return; }
+            departmentQueue.Delete();
+            while (!isEmpty()) { departmentQueue.Delete(); }
+            Console.WriteLine("В организации больше нет отделов");
         }
 
         public void ReadOrgProps(XElement org_)

@@ -45,6 +45,28 @@ namespace CourseWork
                 Console.WriteLine("В данном отделе пока никто не работает\n");
             }
         }
+        public void ShowAllWithNumbers()
+        {
+            Employee current;
+            if (Head != null && Head.Next != null)
+            {
+                Console.WriteLine("=============================================================================================================");
+                Console.WriteLine("|\t{0,-5}|\t{1,-20}|\t{2,-20}|\t{3,-20}|\t{4,-20}|", "№","Имя", "Фамилия", "Возраст", "Должность");
+                Console.WriteLine("=============================================================================================================");
+                current = Head.Next;
+                int number = 1;
+                while (current != null)
+                {
+                    Console.WriteLine("|\t{0,-5}|\t{1,-20}|\t{2,-20}|\t{3,-20}|\t{4,-20}|", number, current.Name, current.SurName, current.Age, current.Post);
+                    Console.WriteLine("=============================================================================================================");
+                    current = current.Next; number++;
+                }
+            }
+            else
+            {
+                Console.WriteLine("В данном отделе пока никто не работает\n");
+            }
+        }
         public Employee Search(string Name, string SurName)
         {
             Employee temp = Head.Next;
@@ -96,27 +118,24 @@ namespace CourseWork
                 Count++;
             }
         }
-        public void Delete(string Name, string SurName, int Age, string Post)
+
+        public void Delete(int number)
         {
-
-            Employee current = Search(Name, SurName);
-
-            if (current == null)
+            if (number < 1) { Console.WriteLine("Такой строки нет."); return; }
+            var prev = Head;
+            var current = Head.Next;
+            var curNum = 1;
+            while (current != null && curNum != number)
             {
-                Console.WriteLine("Такого элемента в списке нет.");
-                return;
+                prev = current;
+                current = current.Next;
+                curNum++;
             }
-
-            Employee prev = Head;
-            Employee? _curr = Head.Next;
-            while (_curr != current)
-            {
-                prev = _curr;
-                _curr = _curr.Next;
-            }
-            prev.Next = _curr.Next;
+            if (current == null) { Console.WriteLine("Такой строки нет."); return; }
+            prev.Next = current.Next;
             current = null;
             Count--;
+            Console.WriteLine("Сотрудник удалён");
         }
         public void DeleteAll()
         {

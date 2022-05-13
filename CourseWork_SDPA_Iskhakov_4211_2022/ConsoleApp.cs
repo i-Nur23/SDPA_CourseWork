@@ -98,9 +98,10 @@ namespace CourseWork
             {
                 Console.WriteLine("Выберите действие ");
                 Console.WriteLine("1 - Поменять название фирмы.\n2 - Вывести список названий отделов\n3 - Вывести список всех отделов с сотрудниками\n4 - Вывести список сотрудников заданного отдела\n" +
-                    "5 - Найти отдел\n6 - Найти сотрудника заданного отдела\n7 - Добавить отдел\n8 - Добавить сотрудника\n9 - Удалить отдел\n10 - Удалить сотрудника\n11 - Сохранить в файл XML\n12 - Загрузить из XML файла\n13 - Завершение работы");
+                    "5 - Найти отдел\n6 - Найти сотрудника заданного отдела\n7 - Добавить отдел\n8 - Добавить сотрудника\n9 - Удалить отдел\n10 - Удалить сотрудника\n11 - Сохранить в файл XML\n12 - Загрузить из XML файла\n" +
+                    "13 - Очистить организацию\n14 - Завершение работы\n");
                 Console.Write("Действие: ");
-                choice = CheckedInteger(1,13);
+                choice = CheckedInteger(1,14);
                 switch (choice)
                 {
                     // Changing org. name
@@ -261,25 +262,29 @@ namespace CourseWork
                             break;
                         }
                         Console.Write("Введите название отдела в котором требуется удалить сотрудника: ");
+                        
                         Dprt = Organization.Search(CheckedString());
-                        if (Dprt != null)
+
+                        if (Dprt == null)
                         {
-                            if (Dprt.isEmpty())
-                            {
-                                Console.WriteLine("Отдел пустой.");
-                                Console.WriteLine();
-                                break;
-                            }
-                            Console.Write("Введите имя сотрудника: "); var name = CheckedString();
-                            Console.Write("Фамилия: "); var surName = CheckedString();
-                            Console.Write("Возраст: "); var age = CheckedInteger();
-                            Console.Write("Должность: "); var post = CheckedString();
-                            Dprt.Delete(name, surName, age, post);
+                            Console.WriteLine("Такого отдела не существет.");
+                            Console.WriteLine();
+                            break;
                         }
-                        else
+
+                        if (Dprt.isEmpty())
                         {
-                            Console.WriteLine("Такого отдела не существует.");
+                            Console.WriteLine("Отдел пустой.");
+                            Console.WriteLine();
+                            break;
                         }
+
+                        Dprt.ShowAllWithNumbers();
+                        Console.Write("Введите номер строки, работника которого вы хотите удалить: "); //var name = CheckedString();
+                        /*Console.Write("Фамилия: "); var surName = CheckedString();
+                        Console.Write("Возраст: "); var age = CheckedInteger();
+                        Console.Write("Должность: "); var post = CheckedString();*/
+                        Dprt.Delete(CheckedInteger());
                         Console.WriteLine();
                         break;
 
@@ -302,8 +307,14 @@ namespace CourseWork
                         Console.WriteLine();
                         break;
 
-                    // Circle exit
+                    // Clearing organization
                     case 13:
+                        Organization.Clear();
+                        Console.WriteLine();
+                        break;
+
+                    // Circle exit
+                    case 14:
                         Organization.DeleteAll();
                         work = false;
                         break;

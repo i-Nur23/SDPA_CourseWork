@@ -49,9 +49,14 @@ namespace CourseWork
             EmployeesList.Add(name, surName, age, post);
         }
 
-        public void Delete(string name, string surName, int age, string post)
+        public void Delete(int number)
         {
-            EmployeesList.Delete(name, surName, age, post);
+            EmployeesList.Delete(number);
+        }
+
+        public void ShowAllWithNumbers()
+        {
+            EmployeesList.ShowAllWithNumbers();
         }
 
         public void DeleteAll()

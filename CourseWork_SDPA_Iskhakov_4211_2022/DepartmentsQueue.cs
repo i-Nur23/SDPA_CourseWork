@@ -89,6 +89,7 @@ namespace CourseWork
                 Last.Next = temp;
                 Last = temp;
             }
+            Console.WriteLine("Отдел удален.");
             Count++;
         }
         public void Add(Department department)
@@ -109,15 +110,13 @@ namespace CourseWork
         {
             if(isEmpty())
             {
-                Console.WriteLine("Очередь пустая, удалять нечего.");
+                Console.WriteLine("Очередь пустая, удалять нечего."); return;
             }
-            else
-            {
-                Department temp = Head.Next;
-                Head.Next = temp.Next;
-                temp.DeleteAll();
-                temp = null;
-            }
+            Department temp = Head.Next;
+            Head.Next = temp.Next;
+            temp.DeleteAll();
+            temp = null;
+            Console.WriteLine("Отдел удалён.");
             Count--;
         }
         public void DeleteAll()
