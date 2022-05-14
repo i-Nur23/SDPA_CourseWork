@@ -322,8 +322,6 @@ namespace CourseWork
                         break;
                 }
             }
-            
-
         }
     }
 }

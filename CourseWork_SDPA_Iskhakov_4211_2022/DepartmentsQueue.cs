@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
-
-namespace CourseWork
+﻿namespace CourseWork
 {
     public class DepartmentsQueue
     {
@@ -61,8 +54,8 @@ namespace CourseWork
                 Console.WriteLine();
                 curr =  curr.Next;
             }
-
         }
+
         public Department Search(string Name)
         {
             Department curr = Head.Next;
@@ -89,7 +82,7 @@ namespace CourseWork
                 Last.Next = temp;
                 Last = temp;
             }
-            Console.WriteLine("Отдел удален.");
+            Console.WriteLine("Отдел добавлен.");
             Count++;
         }
         public void Add(Department department)

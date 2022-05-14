@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace CourseWork
 {
@@ -18,7 +12,7 @@ namespace CourseWork
             EmployeesList = new EmployeesList();
         }
 
-        public Department(string Name, int count = 0)
+        public Department(string Name)
         {
             this.Name = Name;
             EmployeesList = new EmployeesList();

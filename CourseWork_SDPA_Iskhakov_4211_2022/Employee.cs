@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
-
-namespace CourseWork
+﻿namespace CourseWork
 {
     public class Employee
     {
@@ -18,7 +11,6 @@ namespace CourseWork
         {
             this.Next = null;
         }
-
         public Employee(string Name, string SurName, int Age, string Post)
         {
             this.Name = Name;

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
-
-namespace CourseWork
+﻿namespace CourseWork
 {
     public class EmployeesList
     {
@@ -73,19 +66,6 @@ namespace CourseWork
             while (temp != null)
             {
                 if (Name == temp.Name && SurName == temp.SurName)
-                {
-                    return temp;
-                }
-                temp = temp.Next;
-            }
-            return null;
-        }
-        public Employee Search(string Name, string SurName, int age, string post)
-        {
-            Employee temp = Head.Next;
-            while (temp != null)
-            {
-                if (Name == temp.Name && SurName == temp.SurName && age == temp.Age && post == temp.Post)
                 {
                     return temp;
                 }
