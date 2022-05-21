@@ -2,11 +2,11 @@
 {
     public class Employee
     {
-        public string? Name { get; private set; }
-        public string? SurName { get; private set; }
-        public int Age { get; private set; }
-        public string? Post { get; private set; }
-        public Employee Next { get; set; }
+        private string? Name;
+        private string? SurName;
+        private int Age;
+        private string? Post;
+        private Employee Next;
         public Employee()
         {
             this.Next = null;
@@ -18,5 +18,13 @@
             this.Age = Age;
             this.Post = Post;
         }
+
+        public Employee GetNext() => Next;
+        public void SetNext(Employee _Next) => Next = _Next;
+        public string GetName() => Name;
+        public string GetSurName() => SurName;
+        public int GetAge() => Age;
+        public string GetPost() => Post;
+
     }
 }

@@ -2,13 +2,15 @@
 {
     public class EmployeesList
     {
-        public int Count { get; private set; } = 0;
-        public Employee Head { get;  private set; }
+        private int Count = 0;
+        private Employee Head;
         public EmployeesList()
         {
             Head = new Employee();
-            Head.Next = null;
+            //Head.SetNext(null);
         }
+        public int GetCount() => Count;
+        public Employee GetHead() => Head;
         public bool isEmpty()
         {
             if (Count == 0)
@@ -20,17 +22,17 @@
         public void ShowAll()
         {
             Employee current;
-            if (Head != null && Head.Next != null)
+            if (Head != null && Head.GetNext() != null)
             {
                 Console.WriteLine("====================================================================================================");
                 Console.WriteLine("|\t{0,-20}|\t{1,-20}|\t{2,-20}|\t{3,-20}|", "Имя","Фамилия","Возраст","Должность");
                 Console.WriteLine("====================================================================================================");
-                current = Head.Next;
+                current = Head.GetNext();
                 while (current != null)
                 {
-                    Console.WriteLine("|\t{0,-20}|\t{1,-20}|\t{2,-20}|\t{3,-20}|",current.Name, current.SurName, current.Age, current.Post);
+                    Console.WriteLine("|\t{0,-20}|\t{1,-20}|\t{2,-20}|\t{3,-20}|",current.GetName(), current.GetSurName(), current.GetAge(), current.GetPost());
                     Console.WriteLine("====================================================================================================");
-                    current = current.Next;
+                    current = current.GetNext();
                 }
             }
             else
@@ -41,18 +43,18 @@
         public void ShowAllWithNumbers()
         {
             Employee current;
-            if (Head != null && Head.Next != null)
+            if (Head != null && Head.GetNext() != null)
             {
                 Console.WriteLine("=============================================================================================================");
                 Console.WriteLine("|\t{0,-5}|\t{1,-20}|\t{2,-20}|\t{3,-20}|\t{4,-20}|", "№","Имя", "Фамилия", "Возраст", "Должность");
                 Console.WriteLine("=============================================================================================================");
-                current = Head.Next;
+                current = Head.GetNext();
                 int number = 1;
                 while (current != null)
                 {
-                    Console.WriteLine("|\t{0,-5}|\t{1,-20}|\t{2,-20}|\t{3,-20}|\t{4,-20}|", number, current.Name, current.SurName, current.Age, current.Post);
+                    Console.WriteLine("|\t{0,-5}|\t{1,-20}|\t{2,-20}|\t{3,-20}|\t{4,-20}|", number, current.GetName(), current.GetSurName(), current.GetAge(), current.GetPost());
                     Console.WriteLine("=============================================================================================================");
-                    current = current.Next; number++;
+                    current = current.GetNext(); number++;
                 }
             }
             else
@@ -62,14 +64,14 @@
         }
         public Employee Search(string Name, string SurName)
         {
-            Employee temp = Head.Next;
+            Employee temp = Head.GetNext();
             while (temp != null)
             {
-                if (Name == temp.Name && SurName == temp.SurName)
+                if (Name == temp.GetName() && SurName == temp.GetSurName())
                 {
                     return temp;
                 }
-                temp = temp.Next;
+                temp = temp.GetNext();
             }
             return null;
         }
@@ -78,23 +80,24 @@
             Employee? temp = new Employee(Name, SurName, Age, Post);
             if (Count == 0)
             {
-                temp.Next = null;
-                Head.Next = temp;
+                temp.SetNext(null);
+                Head.SetNext(temp);
                 Count++;
             }
             else
             {
                 Employee prev = Head;
-                Employee curr = Head.Next;
-                while (curr != null && (String.Compare(curr.SurName,SurName) < 0 || (String.Compare(curr.SurName, SurName) == 0 && String.Compare(curr.Name, Name) < 0)))
+                Employee curr = Head.GetNext();
+                while (curr != null && (String.Compare(curr.GetSurName(),SurName) < 0 || (String.Compare(curr.GetSurName(), SurName) == 0 && String.Compare(curr.GetName(), Name) < 0)))
                 {
                     prev = curr;
-                    curr = curr.Next;
+                    curr = curr.GetNext();
                 }
 
-                temp.Next = curr != null ? curr : null;
+                if (curr != null) { temp.SetNext(curr); }
+                else { temp.SetNext(null); }
 
-                prev.Next = temp;
+                prev.SetNext(temp);
                 Count++;
             }
         }
@@ -103,30 +106,30 @@
         {
             if (number < 1) { Console.WriteLine("Такой строки нет."); return; }
             var prev = Head;
-            var current = Head.Next;
+            var current = Head.GetNext();
             var curNum = 1;
             while (current != null && curNum != number)
             {
                 prev = current;
-                current = current.Next;
+                current = current.GetNext();
                 curNum++;
             }
             if (current == null) { Console.WriteLine("Такой строки нет."); return; }
-            prev.Next = current.Next;
+            prev.SetNext(current.GetNext());
             current = null;
             Count--;
             Console.WriteLine("Сотрудник удалён");
         }
         public void DeleteAll()
         {
-            Employee current = Head.Next;
-            Employee temp = Head.Next;
-            Head.Next = null;
+            Employee current = Head.GetNext();
+            Employee temp = Head.GetNext();
+            Head.SetNext(null);
             while (current!=null)
             {
                 temp = current;
-                current = current.Next;
-                temp.Next = null;
+                current = current.GetNext();
+                temp.SetNext(null);
                 temp = null;
             }
             Count = 0;

@@ -80,7 +80,7 @@ namespace CourseWork
 
             XElement org_ = new XElement("organization");
 
-            XAttribute orgNameAttr = new XAttribute("name", organization.Name);
+            XAttribute orgNameAttr = new XAttribute("name", organization.GetName());
 
             org_.Add(orgNameAttr);
 

@@ -14,11 +14,10 @@ namespace CourseWork
         {
             this.store = store;
         }
-
         private string CheckedString()
         {
             string result;
-            while (true)
+            while (true)       
             {
                 result = Console.ReadLine();
                 if (result == String.Empty || result.ToCharArray().Where(i => i == ' ').Count() == result.Length)
@@ -114,7 +113,7 @@ namespace CourseWork
                         }
                         else
                         {
-                            Organization.Name = NewName;
+                            Organization.SetName(NewName);
                         }
                         Console.WriteLine();
                         break;
@@ -127,7 +126,7 @@ namespace CourseWork
                             Console.WriteLine();
                             break;
                         }
-                        Console.WriteLine($"Организация {Organization.Name}: ");
+                        Console.WriteLine($"Организация {Organization.GetName()}: ");
                         Organization.ShowOnlyDeps();
                         Console.WriteLine();
                         break;
@@ -140,7 +139,7 @@ namespace CourseWork
                             Console.WriteLine();
                             break;
                         }
-                        Console.WriteLine($"Организация {Organization.Name}: ");
+                        Console.WriteLine($"Организация {Organization.GetName()}: ");
                         Organization.ShowAll();
                         Console.WriteLine();
                         break;
@@ -200,11 +199,11 @@ namespace CourseWork
                             Console.Write("Введите фамилию сотрудника: "); string surName = CheckedString();
                             if (Dprt.Search(name,surName) != null)
                             {
-                                Console.WriteLine($"В отделе {Dprt.Name} нашёлся сотрудник {name} {surName}.");
+                                Console.WriteLine($"В отделе {Dprt.GetName()} нашёлся сотрудник {name} {surName}.");
                             }
                             else
                             {
-                                Console.WriteLine($"В отделе {Dprt.Name} сотрудник {name} {surName} не нашёлся.");
+                                Console.WriteLine($"В отделе {Dprt.GetName()} сотрудник {name} {surName} не нашёлся.");
                             }
                         }
                         else

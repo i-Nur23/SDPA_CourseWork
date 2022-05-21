@@ -4,13 +4,17 @@ namespace CourseWork
 {
     public class Organization
     {
-        public string Name { get; set; }
-        private DepartmentsQueue departmentQueue { get; set; }
+        private string Name;
+        private DepartmentsQueue departmentQueue;
         public Organization(string Name)
         {
             this.Name = Name;
             departmentQueue = new DepartmentsQueue();
         }
+
+        public string GetName() => Name;
+        public void SetName( string _Name) => Name  = _Name;
+
         public bool isEmpty()
         {
             return departmentQueue.isEmpty();
@@ -47,7 +51,7 @@ namespace CourseWork
 
         public void Push(Department department)
         {
-            if (Search(department.Name) != null) { Console.WriteLine("Такой отдел уже существует."); return; }
+            if (Search(department.GetName()) != null) { Console.WriteLine("Такой отдел уже существует."); return; }
             departmentQueue.Add(department);
         }
         public void Delete()
@@ -69,12 +73,12 @@ namespace CourseWork
 
         public void ReadOrgProps(XElement org_)
         {
-            var dprt_curr = departmentQueue.Head.Next;
+            var dprt_curr = departmentQueue.GetHead().GetNext();
             while (dprt_curr != null)
             {
                 XElement dprt_ = new XElement("department");
 
-                XAttribute dprtNameAttr = new XAttribute("name", dprt_curr.Name);
+                XAttribute dprtNameAttr = new XAttribute("name", dprt_curr.GetName());
 
                 dprt_.Add(dprtNameAttr);
 
@@ -82,7 +86,7 @@ namespace CourseWork
 
                 org_.Add(dprt_);
 
-                dprt_curr = dprt_curr.Next;
+                dprt_curr = dprt_curr.GetNext();
             }
         }
     }

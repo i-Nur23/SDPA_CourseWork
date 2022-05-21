@@ -4,13 +4,19 @@ namespace CourseWork
 {
     public class Department
     {
-        public string Name { get; set; }
-        public Department Next { get; set; }
-        private EmployeesList EmployeesList { get; set; }
+        private string Name;
+        private Department Next;
+        private EmployeesList EmployeesList;
         public Department()
         {
             EmployeesList = new EmployeesList();
         }
+
+        public string GetName() => Name;
+        public void SetName(string _Name) => Name = _Name;
+        public Department GetNext() => Next;
+        public void SetNext(Department _Next) => Next = _Next;
+
 
         public Department(string Name)
         {
@@ -20,7 +26,7 @@ namespace CourseWork
 
         public int Count ()
         {
-            return EmployeesList.Count;
+            return EmployeesList.GetCount();
         }
 
         public void ShowAll()
@@ -61,18 +67,18 @@ namespace CourseWork
 
         public void ReadDprtProps(XElement dprt_)
         {
-            var emp_curr = EmployeesList.Head.Next;
+            var emp_curr = EmployeesList.GetHead().GetNext();
             while (emp_curr != null)
             {
                 XElement emp_ = new XElement("employee");
-                XElement emp_name = new XElement("name", emp_curr.Name);
-                XElement emp_surname = new XElement("surname", emp_curr.SurName);
-                XElement emp_age = new XElement("age", emp_curr.Age);
-                XElement emp_post = new XElement("post", emp_curr.Post);
+                XElement emp_name = new XElement("name", emp_curr.GetName());
+                XElement emp_surname = new XElement("surname", emp_curr.GetSurName());
+                XElement emp_age = new XElement("age", emp_curr.GetAge());
+                XElement emp_post = new XElement("post", emp_curr.GetPost());
                 emp_.Add(emp_name); emp_.Add(emp_surname); emp_.Add(emp_age); emp_.Add(emp_post);
                 dprt_.Add(emp_);
 
-                emp_curr = emp_curr.Next;
+                emp_curr = emp_curr.GetNext();
             }
         }
     }

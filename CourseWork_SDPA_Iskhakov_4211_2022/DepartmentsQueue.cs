@@ -2,13 +2,14 @@
 {
     public class DepartmentsQueue
     {
-        public int Count { get; private set; } = 0;
-        public Department Head { get; private set; }
-        private Department Last { get; set; }
+        private int Count  = 0;
+        private Department Head;
+        private Department Last;
         public DepartmentsQueue()
         {
             Head = new Department();
         }
+        public Department GetHead() => Head;
         public bool isEmpty()
         {
             if (Count == 0)
@@ -25,15 +26,15 @@
                 return;
             }
 
-            Department curr = Head.Next;
+            Department curr = Head.GetNext();
             Console.WriteLine("====================================================");
             Console.WriteLine("|\t{0, -20}|\t{1, -20}|", "Имя отдела","Численность");
             Console.WriteLine("====================================================");
             while (curr != null)
             {
-                Console.WriteLine("|\t{0, -20}|\t{1, -20}|", curr.Name, curr.Count());
+                Console.WriteLine("|\t{0, -20}|\t{1, -20}|", curr.GetName(), curr.Count());
                 Console.WriteLine("====================================================");
-                curr = curr.Next; 
+                curr = curr.GetNext(); 
             }
             
         }
@@ -45,27 +46,27 @@
                 return;
             }
 
-            Department curr = Head.Next;
+            Department curr = Head.GetNext();
             while (curr != null)
             {
                 Console.WriteLine();
-                Console.WriteLine($"Отдел: {curr.Name}");
+                Console.WriteLine($"Отдел: {curr.GetName()}");
                 curr.ShowAll();
                 Console.WriteLine();
-                curr =  curr.Next;
+                curr =  curr.GetNext();
             }
         }
 
         public Department Search(string Name)
         {
-            Department curr = Head.Next;
+            Department curr = Head.GetNext();
             while (curr != null)
             {
-                if (curr.Name == Name)
+                if (curr.GetName() == Name)
                 {
                     return curr;
                 }
-                curr = curr.Next;
+                curr = curr.GetNext();
             }
             return null;
         }
@@ -74,12 +75,12 @@
             if (isEmpty())
             {
                 Last = new Department(Name);
-                Head.Next = Last;
+                Head.SetNext(Last);
             }
             else
             {
                 Department temp = new Department(Name);
-                Last.Next = temp;
+                Last.SetNext(temp);
                 Last = temp;
             }
             Console.WriteLine("Отдел добавлен.");
@@ -90,11 +91,11 @@
             if (isEmpty())
             {
                 Last = department;
-                Head.Next = Last;
+                Head.SetNext(Last);
             }
             else
             {
-                Last.Next = department;
+                Last.SetNext(department);
                 Last = department;
             }
             Count++;
@@ -105,23 +106,24 @@
             {
                 Console.WriteLine("Очередь пустая, удалять нечего."); return;
             }
-            Department temp = Head.Next;
-            Head.Next = temp.Next;
+            Department temp = Head.GetNext();
+            Head.SetNext(temp.GetNext());
             temp.DeleteAll();
             temp = null;
             Console.WriteLine("Отдел удалён.");
             Count--;
+            if (Count == 0) { Last = Head; }
         }
         public void DeleteAll()
         {
             if(!isEmpty())
             {
-                var temp = Head.Next;
-                var curr = Head.Next;
+                var temp = Head.GetNext();
+                var curr = Head.GetNext();
                 while (curr != null)
                 {
                     temp = curr;
-                    curr = curr.Next;
+                    curr = curr.GetNext();
                     temp.DeleteAll();
                     temp = null;
                 }
