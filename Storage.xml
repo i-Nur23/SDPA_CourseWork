@@ -1,26 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<organization name="Yandex">
-  <department name="Dev">
-    <employee>
-      <name>Ivan</name>
-      <surname>Ivanov</surname>
-      <age>23</age>
-      <post>Middle</post>
-    </employee>
-    <employee>
-      <name>Oleg</name>
-      <surname>Popov</surname>
-      <age>34</age>
-      <post>Senior</post>
-    </employee>
-  </department>
-  <department name="HR">
-    <employee>
-      <name>Evgeny</name>
-      <surname>Kamyshov</surname>
-      <age>30</age>
-      <post>Manager</post>    
-    </employee>
-  </department>
-  <department name="QA" />
-</organization>
+<organization name="Yandex" />

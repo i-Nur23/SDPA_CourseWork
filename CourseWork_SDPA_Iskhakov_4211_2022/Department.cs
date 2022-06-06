@@ -77,6 +77,8 @@ namespace CourseWork
                 dprt_.Add(emp_);
 
                 emp_curr = emp_curr.GetNext();
+
+                emp_ = emp_name = emp_surname = emp_age = emp_post = null;
             }
         }
     }

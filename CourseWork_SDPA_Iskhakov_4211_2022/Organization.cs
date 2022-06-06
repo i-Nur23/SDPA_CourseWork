@@ -86,6 +86,8 @@ namespace CourseWork
                 org_.Add(dprt_);
 
                 dprt_curr = dprt_curr.GetNext();
+
+                dprt_ = null; dprtNameAttr = null;
             }
         }
     }

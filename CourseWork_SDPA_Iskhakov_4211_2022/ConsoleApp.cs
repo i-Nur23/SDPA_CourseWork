@@ -15,7 +15,7 @@ namespace CourseWork
             while (true)       
             {
                 result = Console.ReadLine();
-                if (result == String.Empty || result.ToCharArray().Where(i => i == ' ').Count() == result.Length)
+                if (result == String.Empty || result.ToCharArray().Where(i => i == ' ' || i == '\t').Count() == result.Length)
                 {
                     Console.WriteLine("Вы ввели пустую строку, попробуйте еще раз: ");
                     continue;
@@ -33,7 +33,7 @@ namespace CourseWork
                 isRightInt = Int32.TryParse(Console.ReadLine(), out result);
                 if (!isRightInt)
                 {
-                    Console.Write("Вы ввели не число, попробуйте еще раз: ");
+                    Console.Write("Вы ввели не целое число (или произошло переполнение), попробуйте еще раз: ");
                     continue;
                 }
                 return result;
@@ -49,12 +49,12 @@ namespace CourseWork
                 isRightInt = Int32.TryParse(Console.ReadLine(), out result);
                 if (!isRightInt)
                 {
-                    Console.Write("Вы ввели не число, попробуйте еще раз: ");
+                    Console.Write("Вы ввели не целое число, попробуйте еще раз: ");
                     continue;
                 }
                 if (!(result <= end && result >= begin))
                 {
-                    Console.Write($"Вы ввели число не в пределах от {begin} до {end}. Попробуйте ещё раз");
+                    Console.Write($"Вы ввели число не в пределах от {begin} до {end}. Попробуйте ещё раз: ");
                     continue;
                 }
                 return result;
@@ -91,7 +91,7 @@ namespace CourseWork
             {
                 Console.WriteLine("Выберите действие ");
                 Console.WriteLine("1 - Поменять название фирмы.\n2 - Вывести список названий отделов\n3 - Вывести список всех отделов с сотрудниками\n4 - Вывести список сотрудников заданного отдела\n" +
-                    "5 - Найти отдел\n6 - Найти сотрудника заданного отдела\n7 - Добавить отдел\n8 - Добавить сотрудника\n9 - Удалить отдел\n10 - Удалить сотрудника\n11 - Сохранить в файл XML\n12 - Загрузить из XML файла\n" +
+                    "5 - Найти отдел\n6 - Найти сотрудника заданного отдела\n7 - Добавить отдел\n8 - Добавить сотрудника\n9 - Удалить самый ранее добавленный отдел\n10 - Удалить сотрудника\n11 - Сохранить в файл XML\n12 - Загрузить из XML файла\n" +
                     "13 - Очистить организацию\n14 - Завершение работы\n");
                 Console.Write("Действие: ");
                 choice = CheckedInteger(1,14);
@@ -222,9 +222,10 @@ namespace CourseWork
                         {
                             Console.Write("Введите имя сотрудника: "); var name = CheckedString();
                             Console.Write("Фамилия: "); var surName = CheckedString();
-                            Console.Write("Возраст: "); var age = CheckedInteger();
+                            Console.Write("Возраст: "); var age = CheckedInteger(1,150);
                             Console.Write("Должность: "); var post = CheckedString();
                             Dprt.Add(name, surName, age, post);
+                            Console.WriteLine("Сотрудник добавлен");
                         }
                         else
                         {
@@ -281,6 +282,7 @@ namespace CourseWork
                     // Saving structure
                     case 11:
                         store.Save(Organization);
+                        Console.WriteLine("Структура сохранена в файл");
                         Console.WriteLine();
                         break;
 
@@ -290,6 +292,7 @@ namespace CourseWork
                         {
                             var new_org = store.Download();
                             Organization = new_org;
+                            Console.WriteLine("Структура загружена из файла");
                         }
                         catch (Exception ex)
                         {
@@ -307,6 +310,8 @@ namespace CourseWork
                     // Circle exit
                     case 14:
                         Organization.DeleteAll();
+                        Organization = null;
+                        store = null;
                         work = false;
                         break;
                     default:

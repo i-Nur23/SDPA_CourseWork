@@ -77,7 +77,7 @@ namespace CourseWork
                         if (ch.Name == "age")
                         {
                             var isCorrectAge = Int32.TryParse(ch.InnerText, out emp_age);
-                            if (!isCorrectAge) { throw new Exception("Неправильный формат возраста одного из сотрудников"); }
+                            if (!isCorrectAge || emp_age < 1) { throw new Exception("Неправильный формат возраста одного из сотрудников"); }
                         }
 
                         if (ch.Name == "post")
@@ -88,10 +88,12 @@ namespace CourseWork
                     }
 
                     dprt.Add(emp_name, emp_surname, emp_age, emp_post);
+                    
                 }
+                dprt = null;
             }
 
-
+            xDoc = null;
             return organization;
         }
 
@@ -110,6 +112,8 @@ namespace CourseWork
             xdoc.Add(org_);
 
             xdoc.Save(FilePath);
+
+            xdoc = null; org_ = null; orgNameAttr = null ;
         }
     }
 }

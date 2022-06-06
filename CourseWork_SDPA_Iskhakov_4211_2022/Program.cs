@@ -9,6 +9,7 @@ namespace CourseWork
         {
             var app = new ConsoleApp(new XMLReadWrite(FilePath));
             app.Start();
+            app = null;
         }
     }
 }

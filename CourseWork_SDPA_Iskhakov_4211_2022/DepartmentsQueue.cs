@@ -131,7 +131,7 @@
                 }
             }
             Count = 0;
-            Head = null;
+            Head = null; Last = null;
         }
     }
 }
