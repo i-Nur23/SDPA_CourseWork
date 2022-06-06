@@ -7,7 +7,6 @@
         public EmployeesList()
         {
             Head = new Employee();
-            //Head.SetNext(null);
         }
         public int GetCount() => Count;
         public Employee GetHead() => Head;
@@ -25,12 +24,12 @@
             if (Head != null && Head.GetNext() != null)
             {
                 Console.WriteLine("====================================================================================================");
-                Console.WriteLine("|\t{0,-20}|\t{1,-20}|\t{2,-20}|\t{3,-20}|", "Имя","Фамилия","Возраст","Должность");
+                Console.WriteLine("|\t{0,-20}|\t{1,-20}|\t{2,-20}|\t{3,-20}|", "Фамилия","Имя","Возраст","Должность");
                 Console.WriteLine("====================================================================================================");
                 current = Head.GetNext();
                 while (current != null)
                 {
-                    Console.WriteLine("|\t{0,-20}|\t{1,-20}|\t{2,-20}|\t{3,-20}|",current.GetName(), current.GetSurName(), current.GetAge(), current.GetPost());
+                    Console.WriteLine("|\t{0,-20}|\t{1,-20}|\t{2,-20}|\t{3,-20}|",current.GetSurName(), current.GetName(), current.GetAge(), current.GetPost());
                     Console.WriteLine("====================================================================================================");
                     current = current.GetNext();
                 }
@@ -46,13 +45,13 @@
             if (Head != null && Head.GetNext() != null)
             {
                 Console.WriteLine("=============================================================================================================");
-                Console.WriteLine("|\t{0,-5}|\t{1,-20}|\t{2,-20}|\t{3,-20}|\t{4,-20}|", "№","Имя", "Фамилия", "Возраст", "Должность");
+                Console.WriteLine("|\t{0,-5}|\t{1,-20}|\t{2,-20}|\t{3,-20}|\t{4,-20}|", "№","Фамилия", "Имя", "Возраст", "Должность");
                 Console.WriteLine("=============================================================================================================");
                 current = Head.GetNext();
                 int number = 1;
                 while (current != null)
                 {
-                    Console.WriteLine("|\t{0,-5}|\t{1,-20}|\t{2,-20}|\t{3,-20}|\t{4,-20}|", number, current.GetName(), current.GetSurName(), current.GetAge(), current.GetPost());
+                    Console.WriteLine("|\t{0,-5}|\t{1,-20}|\t{2,-20}|\t{3,-20}|\t{4,-20}|", number, current.GetSurName(), current.GetName(), current.GetAge(), current.GetPost());
                     Console.WriteLine("=============================================================================================================");
                     current = current.GetNext(); number++;
                 }
@@ -104,6 +103,7 @@
 
         public void Delete(int number)
         {
+            if (number == -1) { Console.WriteLine("Удаление отменено."); return; }
             if (number < 1) { Console.WriteLine("Такой строки нет."); return; }
             var prev = Head;
             var current = Head.GetNext();
@@ -133,6 +133,7 @@
                 temp = null;
             }
             Count = 0;
+            Head = null;
         }
     }
 }

@@ -6,6 +6,7 @@ namespace CourseWork
     {
         private string Name;
         private DepartmentsQueue departmentQueue;
+
         public Organization(string Name)
         {
             this.Name = Name;
@@ -13,7 +14,7 @@ namespace CourseWork
         }
 
         public string GetName() => Name;
-        public void SetName( string _Name) => Name  = _Name;
+        public void SetName(string _Name) => Name  = _Name;
 
         public bool isEmpty()
         {
@@ -48,7 +49,6 @@ namespace CourseWork
             if (Search(name) != null) { Console.WriteLine("Такой отдел уже существует."); return; }
             departmentQueue.Add(name);
         }
-
         public void Push(Department department)
         {
             if (Search(department.GetName()) != null) { Console.WriteLine("Такой отдел уже существует."); return; }
@@ -65,12 +65,11 @@ namespace CourseWork
         }
         public void Clear()
         {
-            if (isEmpty()) { Console.WriteLine("Организация пустая"); ; return; }
+            if (isEmpty()) { Console.WriteLine("Организация пустая"); return; }
             departmentQueue.Delete();
             while (!isEmpty()) { departmentQueue.Delete(); }
             Console.WriteLine("В организации больше нет отделов");
         }
-
         public void ReadOrgProps(XElement org_)
         {
             var dprt_curr = departmentQueue.GetHead().GetNext();

@@ -5,6 +5,7 @@
         private int Count  = 0;
         private Department Head;
         private Department Last;
+
         public DepartmentsQueue()
         {
             Head = new Department();
@@ -68,6 +69,7 @@
                 }
                 curr = curr.GetNext();
             }
+
             return null;
         }
         public void Add(string Name)
@@ -109,8 +111,8 @@
             Department temp = Head.GetNext();
             Head.SetNext(temp.GetNext());
             temp.DeleteAll();
+            Console.WriteLine($"Отдел {temp.GetName()} удалён.");
             temp = null;
-            Console.WriteLine("Отдел удалён.");
             Count--;
             if (Count == 0) { Last = Head; }
         }
@@ -129,6 +131,7 @@
                 }
             }
             Count = 0;
+            Head = null;
         }
     }
 }

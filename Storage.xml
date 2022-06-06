@@ -19,11 +19,8 @@
       <name>Evgeny</name>
       <surname>Kamyshov</surname>
       <age>30</age>
-      <post>Manager</post>
+      <post>Manager</post>    
     </employee>
   </department>
   <department name="QA" />
 </organization>
-
-
-

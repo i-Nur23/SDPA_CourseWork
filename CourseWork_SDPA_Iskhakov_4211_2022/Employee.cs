@@ -2,15 +2,17 @@
 {
     public class Employee
     {
-        private string? Name;
-        private string? SurName;
+        private string Name;
+        private string SurName;
         private int Age;
-        private string? Post;
+        private string Post;
         private Employee Next;
+
         public Employee()
         {
             this.Next = null;
         }
+
         public Employee(string Name, string SurName, int Age, string Post)
         {
             this.Name = Name;

@@ -7,22 +7,20 @@ namespace CourseWork
         private string Name;
         private Department Next;
         private EmployeesList EmployeesList;
+
         public Department()
         {
             EmployeesList = new EmployeesList();
         }
-
-        public string GetName() => Name;
-        public void SetName(string _Name) => Name = _Name;
-        public Department GetNext() => Next;
-        public void SetNext(Department _Next) => Next = _Next;
-
-
         public Department(string Name)
         {
             this.Name = Name;
             EmployeesList = new EmployeesList();
         }
+
+        public string GetName() => Name;
+        public Department GetNext() => Next;
+        public void SetNext(Department _Next) => Next = _Next;
 
         public int Count ()
         {

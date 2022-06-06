@@ -1,9 +1,4 @@
 ﻿using CourseWork_SDPA_Iskhakov_4211_2022.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CourseWork
 {
@@ -74,18 +69,17 @@ namespace CourseWork
             {
                 Console.Write("Введите название вашей компании или '0', если хотите загрузить из XML файла: ");
                 string OrgName = CheckedString();
-                if (OrgName == "0") 
+                if (OrgName == "0")
                 {
                     try
                     {
                         Organization = store.Download();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        Console.WriteLine("Файл пуст.");
+                        Console.WriteLine(ex.Message);
                         continue;
                     }
-                    Organization = store.Download(); 
                 }
                 else { Organization = new Organization(OrgName); }
                 break;
@@ -105,11 +99,11 @@ namespace CourseWork
                 {
                     // Changing org. name
                     case 1:
-                        Console.Write("Введите новое название: ");
+                        Console.Write($"Введите новое название (старое: {Organization.GetName()}) или пустую строку, если передумали: ") ;
                         string NewName = Console.ReadLine();
                         if (NewName == string.Empty || NewName.ToCharArray().Where(i => i == ' ').Count() == NewName.Length)
                         {
-                            Console.WriteLine("Название не может быть пустым.");
+                            Console.WriteLine("Название не изменилось.");
                         }
                         else
                         {
@@ -279,10 +273,7 @@ namespace CourseWork
                         }
 
                         Dprt.ShowAllWithNumbers();
-                        Console.Write("Введите номер строки, работника которого вы хотите удалить: "); //var name = CheckedString();
-                        /*Console.Write("Фамилия: "); var surName = CheckedString();
-                        Console.Write("Возраст: "); var age = CheckedInteger();
-                        Console.Write("Должность: "); var post = CheckedString();*/
+                        Console.Write("Введите номер строки, работника которого вы хотите удалить (или -1, если передумали удалять): ");
                         Dprt.Delete(CheckedInteger());
                         Console.WriteLine();
                         break;
@@ -297,11 +288,12 @@ namespace CourseWork
                     case 12:
                         try
                         {
-                            Organization = store.Download();
+                            var new_org = store.Download();
+                            Organization = new_org;
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-                            Console.WriteLine("Файл пустой");
+                            Console.WriteLine(ex.Message);
                         }
                         Console.WriteLine();
                         break;
